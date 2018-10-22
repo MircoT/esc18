@@ -49,7 +49,7 @@ int main() {
                    [](int value) { return value % 3 == 0 || value % 7 == 0; });
 
   if (first_by_3_or_7 != std::end(v)) {
-    std::cout << "First element multiple of 3 or 7 is: " << *first_by_3_or_7
+    std::cout << "==> First element multiple of 3 or 7 is: " << *first_by_3_or_7
               << " at position " << std::distance(std::begin(v), first_by_3_or_7)
               << '\n';
   } else {
