@@ -8,8 +8,7 @@
 std::ostream &operator<<(std::ostream &os, std::vector<int> const &c);
 std::vector<int> make_vector(int N);
 
-int main()
-{
+int main() {
   // create a vector of N elements, generated randomly
   int const N = 10;
   std::vector<int> v = make_vector(N);
@@ -49,29 +48,24 @@ int main()
       std::find_if(std::begin(v), std::end(v),
                    [](int value) { return value % 3 == 0 || value % 7 == 0; });
 
-  if (first_by_3_or_7 != std::end(v))
-  {
+  if (first_by_3_or_7 != std::end(v)) {
     std::cout << "First element multiple of 3 or 7 is: " << *first_by_3_or_7
+              << " at position " << std::distance(std::begin(v), first_by_3_or_7)
               << '\n';
-  }
-  else
-  {
+  } else {
     std::cout << "There is not multiples of 3 or 7...\n";
   }
 
   // erase from the vector all the multiples of 3 or 7
   // use std::remove_if followed by vector::erase
-  v.erase(
-      std::remove_if(
-          std::begin(v),
-          std::end(v),
-          [](int value) { return value % 3 == 0 || value % 7 == 0; }),
-      std::end(v));
+  v.erase(std::remove_if(
+              std::begin(v), std::end(v),
+              [](int value) { return value % 3 == 0 || value % 7 == 0; }),
+          std::end(v));
   std::cout << "==> Vector without multiples of 3 or 7: " << v << '\n';
 };
 
-std::ostream &operator<<(std::ostream &os, std::vector<int> const &c)
-{
+std::ostream &operator<<(std::ostream &os, std::vector<int> const &c) {
   os << "{ ";
   std::copy(std::begin(c), std::end(c), std::ostream_iterator<int>{os, " "});
   os << '}';
@@ -79,8 +73,7 @@ std::ostream &operator<<(std::ostream &os, std::vector<int> const &c)
   return os;
 }
 
-std::vector<int> make_vector(int N)
-{
+std::vector<int> make_vector(int N) {
   // define a pseudo-random number generator engine and seed it using an actual
   // random device
   std::random_device rd;
