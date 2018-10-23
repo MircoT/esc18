@@ -10,6 +10,12 @@
         "typeinfo": "cpp",
         "algorithm": "cpp",
         "new": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "memory": "cpp",
+        "functional": "cpp",
+        "thread": "cpp",
+        "__split_buffer": "cpp",
+        "vector": "cpp",
+        "__mutex_base": "cpp"
     }
 }
