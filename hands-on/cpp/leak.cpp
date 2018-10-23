@@ -1,5 +1,22 @@
+#include <memory>
 
-int* factory();
+// int* factory();
+
+// // "still reachable"
+// auto g = factory();
+
+// int main()
+// {
+//   // "definitely lost"
+//   auto t = factory();
+// }
+
+// int* factory()
+// {
+//   return new int;
+// }
+
+std::unique_ptr<int> factory();
 
 // "still reachable"
 auto g = factory();
@@ -10,7 +27,7 @@ int main()
   auto t = factory();
 }
 
-int* factory()
+std::unique_ptr<int> factory()
 {
-  return new int;
+  return std::make_unique<int>();
 }
