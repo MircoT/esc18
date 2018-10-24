@@ -50,5 +50,5 @@ int main(int argc, char *argv[])
             << " in " << time.count() << " s\n";
 
   std::cout << "pi = " << value2 << " for " << n << " iterations"
-            << " in " << (start - end).count() << " s\n";
+            << " in " << (end - start).count() << " s\n";
 }
