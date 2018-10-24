@@ -20,6 +20,9 @@
         "chrono": "cpp",
         "iomanip": "cpp",
         "ostream": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp"
     }
 }
