@@ -17,6 +17,9 @@
         "__split_buffer": "cpp",
         "vector": "cpp",
         "__mutex_base": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iomanip": "cpp",
+        "ostream": "cpp",
+        "random": "cpp"
     }
 }
