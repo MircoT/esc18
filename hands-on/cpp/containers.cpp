@@ -12,7 +12,7 @@ std::default_random_engine eng{std::random_device{}()};
 using Distribution = std::uniform_int_distribution<>;
 Distribution dist;
 
-Duration fill(std::vector<int>& cont, int N)
+template <typename container_type> Duration fill(container_type& cont, int N)
 {
   assert(N >= 0);
 
@@ -33,7 +33,7 @@ Duration fill(std::vector<int>& cont, int N)
   return std::chrono::high_resolution_clock::now() - start;
 }
 
-Duration process(std::vector<int> const& cont)
+template <typename container_type> Duration process(container_type const& cont)
 {
   auto start = std::chrono::high_resolution_clock::now();
 
@@ -48,12 +48,14 @@ Duration process(std::vector<int> const& cont)
 
 int main(int argc, char* argv[])
 {
-  int const N = (argc > 1) ? std::atoi(argv[1]) : 10000;
+  int const N = (argc > 1) ? std::atoi(argv[1]) : 100000;
 
   std::vector<int> v;
-  std::cout << "vector fill: " << fill(v, N).count() << " s\n";
+  std::cout << "vector fill: " << fill<std::vector<int>>(v, N).count() << " s\n";
+  // it can deduce from v
+  // std::cout << "vector fill: " << fill(v, N).count() << " s\n";
   std::cout << "vector process: " << process(v).count() << " s\n";
   std::list<int> l;
-  // std::cout << "list fill: " << fill(l, N).count() << " s\n";
-  // std::cout << "list process: " << process(l).count() << " s\n";
+  std::cout << "list fill: " << fill(l, N).count() << " s\n";
+  std::cout << "list process: " << process(l).count() << " s\n";
 }
