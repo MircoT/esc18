@@ -1,0 +1,20 @@
+# configure PS1 command prompt
+PS1='\u@\h \w \$ '
+
+# no double entries in the shell history
+export HISTCONTROL="$HISTCONTROL erasedups:ignoreboth"
+
+# do not overwrite files when redirecting output by default.
+set -o noclobber
+
+# wrap these commands for interactive use to avoid accidental overwrites.
+rm() { command rm -i "$@"; }
+cp() { command cp -i "$@"; }
+mv() { command mv -i "$@"; }
+
+# environment
+source scl_source enable devtoolset-7 llvm-toolset-7
+source ~/tbb2018_20180822oss/bin/tbbvars.sh intel64 linux auto_tbbroot
+export LD_LIBRARY_PATH=$HOME/tbb2018_20180822oss/lib/intel64/gcc4.7/:$LD_LIBRARY_PATH
+export LIBRARY_PATH=/tbb2018_20180822oss/lib/intel64/gcc4.7/:$LIBRARY_PATH
+module load compilers/cuda-10.0
