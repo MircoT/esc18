@@ -43,7 +43,7 @@ template <typename container_type> Duration process(container_type const& cont)
     });
   (void)v; // to silence a warning about unused variable
 
-  return std::chrono::high_resolution_clock::now() - start;
+  return (std::chrono::duration<double>)(std::chrono::high_resolution_clock::now()-start);
 }
 
 int main(int argc, char* argv[])

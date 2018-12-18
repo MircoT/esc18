@@ -1,25 +1,21 @@
-#include <string>
-#include <vector>
-#include <memory>
+#include <dirent.h>
 #include <iostream>
 #include <iterator>
-#include <dirent.h>
+#include <memory>
+#include <string>
+#include <vector>
 
-template<typename T>
-std::ostream& operator<<(std::ostream& os, std::vector<T> const& c)
+template <typename T>
+std::ostream &operator<<(std::ostream &os, std::vector<T> const &c)
 {
   os << "{ ";
-  std::copy(
-      std::begin(c),
-      std::end(c),
-      std::ostream_iterator<T>{os, " "}
-  );
+  std::copy(std::begin(c), std::end(c), std::ostream_iterator<T>{os, " "});
   os << '}';
 
   return os;
 }
 
-std::vector<std::string> entries(/* add the right arguments here */)
+std::vector<std::string> entries(std::unique_ptr<DIR, std::function<int(DIR *)>> dir_ptr)
 {
   std::vector<std::string> result;
 
@@ -40,7 +36,7 @@ std::vector<std::string> entries(/* add the right arguments here */)
   return result;
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
   std::string const name = argc > 1 ? argv[1] : ".";
 
@@ -48,7 +44,9 @@ int main(int argc, char* argv[])
   // relevant functions and data structures are
   // DIR* opendir(const char* name);
   // int  closedir(DIR* dirp);
+  auto dir_ptr = std::unique_ptr<DIR, std::function<int(DIR *)>>{
+      opendir(const char *name), closedir};
 
-  std::vector<std::string> v = entries(/* add the right argument here */);
+  std::vector<std::string> v = entries(std::move(dir_ptr));
   std::cout << v << '\n';
 }
